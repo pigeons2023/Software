@@ -1,0 +1,159 @@
+/* 基础样式 */
+body { font-family: '微软雅黑', sans-serif; margin: 0; padding: 20px; background: #f0f2f5; }
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* 文件夹网格 */
+.folder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
+/* 文件夹卡片 */
+.folder-card { 
+    background: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 垂直居中 */
+    align-items: center;     /* 水平居中 */
+    min-height: 150px;       /* 确保卡片有足够高度 */
+    box-sizing: border-box;  /* 避免padding影响整体尺寸 */
+}
+
+/* 文件夹图标 */
+.folder-icon { 
+    font-size: 48px; 
+    color: #ffd700; 
+    margin-bottom: 8px;      /* 图标与文字的间距 */
+    display: block;          /* 块级元素确保居中 */
+}
+
+/* 文件夹缩略图容器 */
+.folder-card .folder-thumbnail {
+    height: auto; 
+    margin-bottom: 0;        /* 移除容器额外边距 */
+    display: flex;           /* 关键：使用flex布局居中 */
+    justify-content: center; /* 容器内水平居中 */
+    align-items: center;     /* 容器内垂直居中 */
+    width: 0%;             /* 占满卡片宽度 */
+}
+
+/* 确保隐藏原软件图标 */
+.folder-card .folder-thumbnail img {
+    display: none; 
+}
+.folder-card:hover { transform: translateY(-5px); }
+.folder-icon { font-size: 48px; color: #ffd700; margin-bottom: 10px; }
+
+/* 文件夹内容区域 */
+.folder-content { 
+    display: none; 
+    margin-top: 30px; 
+    background: white; 
+    padding: 20px; 
+    border-radius: 10px;
+}
+.software-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 20px; }
+.software-card { text-align: center; cursor: pointer; }
+.software-icon { width: 64px; height: 64px; margin-bottom: 8px; }
+
+/* 模态框 */
+/* 模态框层级控制 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000; /* 所有模态框背景的基础层级 */
+}
+
+/* 文件夹模态框背景层 */
+#folderModal {
+    z-index: 1000; /* 与基础层级一致 */
+}
+
+/* 软件详情模态框背景层（高于文件夹模态框） */
+#softwareModal {
+    z-index: 1001; /* 比文件夹模态框大1 */
+}
+
+/* 所有模态框内容层（高于对应背景层） */
+.modal-content {
+    position: relative;
+    background: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 10px;
+    z-index: 1002; /* 内容层统一高于背景层 */
+}
+.modal-content {
+    background: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 70%;
+    border-radius: 10px;
+    position: relative;
+}
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+}
+.doc-btn { margin-top: 15px; padding: 8px 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+
+
+/* 文件夹缩略图样式 */
+.folder-card .folder-thumbnail {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    height: 64px; /* 与原图标高度一致 */
+    margin-bottom: 8px;
+}
+.folder-card .folder-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* 文件夹模态框内容网格 */
+.folder-modal-grid {
+    margin-top: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+
+/* 文件夹缩略图（显示单个文件夹图标） */
+.folder-card .folder-thumbnail {
+    height: auto; /* 取消固定高度 */
+    margin-bottom: 12px; /* 调整与文字的间距 */
+}
+
+/* 文件夹图标样式（恢复原始大小） */
+.folder-card .folder-thumbnail .folder-icon {
+    font-size: 48px; /* 恢复初始图标大小 */
+    color: #ffd700; /* 保持原有颜色 */
+    margin-bottom: 0; /* 移除额外边距 */
+}
+
+/* 移除原软件图标缩略图的网格布局 */
+.folder-card .folder-thumbnail img {
+    display: none; /* 隐藏原软件图标 */
+}
+
+/* 页脚样式 */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    background: #ffffff;
+    color: #666;
+    border-radius: 10px;
+    font-size: 14px;
+}

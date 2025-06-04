@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>软件工具库</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>软件工具库</h1>
+        <div class="folder-grid">
+            <!-- 文件夹卡片 -->
+            <div class="folder-card" data-folder="screen-annotate">
+                <i class="fas fa-folder-open folder-icon"></i>
+                <p>屏幕批注</p>
+            </div>
+            <div class="folder-card" data-folder="class-management">
+                <i class="fas fa-folder-open folder-icon"></i>
+                <p>班级管理</p>
+            </div>
+            <div class="folder-card" data-folder="system-software">
+                <i class="fas fa-folder-open folder-icon"></i>
+                <p>系统软件</p>
+            </div>
+            <div class="folder-card" data-folder="other-software">
+                <i class="fas fa-folder-open folder-icon"></i>
+                <p>其他软件</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>版权所有 © 2025 软件工具库</p>
+    </footer>
+
+    <!-- 文件夹内容容器 -->
+    <div class="folder-content" id="folderContent"></div>
+
+    <!-- 软件详情模态框 -->
+    <div class="modal" id="softwareModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+            <button class="doc-btn" id="openDoc">查看详细文档</button>
+        </div>
+    </div>
+
+    <!-- 文件夹内容模态框 -->
+    <div class="modal" id="folderModal">
+        <div class="modal-content">
+            <span class="close" id="closeFolderModal">&times;</span>
+            <h2 id="folderModalTitle"></h2>
+            <div class="software-grid folder-modal-grid"></div>
+        </div>
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

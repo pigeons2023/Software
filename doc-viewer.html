@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>文档查看</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .doc-container { display: flex; gap: 20px; padding: 20px; }
+        .toc { min-width: 250px; background: #f8f9fa; padding: 20px; border-radius: 8px; }
+        .content { flex: 1; background: white; padding: 20px; border-radius: 8px; }
+        .toc a { display: block; padding: 5px 0; color: #333; text-decoration: none; }
+        .toc a:hover { color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="doc-container" id="docContainer">
+        <nav class="toc" id="toc"></nav>
+        <div class="content" id="content"></div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>版权所有 © 2025 软件工具库</p>
+    </footer>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/marked/4.3.0/marked.min.js"></script>
+    <script>
+        // 解析 URL 参数获取文档路径（如 ?file=docs/vs-code.md）
+        const params = new URLSearchParams(window.location.search);
+        const filePath = params.get('file');
+
+        // 加载并渲染 Markdown 文档
+        fetch(filePath)
+            .then(res => {
+                if (!res.ok) throw new Error('文件不存在');
+                return res.text();
+            })
+            .then(markdown => {
+                // 使用 marked 库解析 Markdown 为 HTML
+                const html = marked.parse(markdown);
+                document.getElementById('content').innerHTML = html;
+                
+                // 自动生成目录（提取 h2-h4 标题）
+                const titles = Array.from(document.querySelectorAll('h2, h3, h4'));
+                const tocHtml = titles.map(title => `
+                    <a href="#${title.id}" style="margin-left: ${(title.tagName[1]-2)*10}px">
+                        ${title.textContent}
+                    </a>
+                `).join('');
+                document.getElementById('toc').innerHTML = `<h3>目录</h3>${tocHtml}`;
+            });
+    </script>
+</body>
+</html>
