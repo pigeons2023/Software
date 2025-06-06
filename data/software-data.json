@@ -1,0 +1,21 @@
+{
+    "screen-annotate": [
+        { "name": "Ink Canvas", "icon": "images/ic.png", "desc": "多功能屏幕批注程序", "doc": "docs/ic.md" },
+        { "name": "Ink Canvas Artistry", "icon": "images/ica.png", "desc": "多功能屏幕批注程序", "doc": "docs/ica.md" },
+        { "name": "Ink Canvas Basic", "icon": "images/icb.png", "desc": "多功能屏幕批注程序", "doc": "docs/icb.md" },
+        { "name": "Ink Canvas for Class", "icon": "images/icc.png", "desc": "多功能屏幕批注程序", "doc": "docs/icc.md" },
+        { "name": "Ink Canvas Plus", "icon": "images/icp.png", "desc": "多功能屏幕批注程序", "doc": "docs/icp.md" }
+    ],
+    "class-management": [
+        { "name": "班级管家", "icon": "images/CA.png", "desc": "班级管理工具", "doc": "docs/CA.md" },
+        { "name": "作业收集统计", "icon": "images/homework.png", "desc": "作业统计工具", "doc": "docs/homework.md" },
+        { "name": "抽奖软件", "icon": "images/lottery.png", "desc": "随机抽取工具", "doc": "docs/lottery.md" },
+        { "name": "考试看板", "icon": "images/exam.png", "desc": "考试看板工具", "doc": "docs/exam.md" }
+    ],
+    "system-software": [
+        { "name": "Office Tool Plus", "icon": "images/OTP.png", "desc": "Office安装工具", "doc": "docs/OTP.md" }
+    ],
+    "other-software": [
+        { "name": "PDF2PNG", "icon": "images/PDF2PNG.png", "desc": "PNG转PDF工具", "doc": "docs/PDF2PNG.md" }
+    ]
+}

@@ -1,41 +1,40 @@
-// 数据
-const folderData = {
-    "screen-annotate": [ // 屏幕批注文件夹
-        { name: 'Ink Canvas', icon: 'images/ic.png', desc: '多功能屏幕批注程序', doc: 'docs/ic.md' },
-        { name: 'Ink Canvas Artistry', icon: 'images/ica.png', desc: '多功能屏幕批注程序', doc: 'docs/ica.md' },
-        { name: 'Ink Canvas Basic', icon: 'images/icb.png', desc: '多功能屏幕批注程序', doc: 'docs/icb.md' },
-        { name: 'Ink Canvas for Class', icon: 'images/icc.png', desc: '多功能屏幕批注程序', doc: 'docs/icc.md' }
-    ],
-    "class-management": [ // 班级管理文件夹
-        { name: '班级管家', icon: 'images/CA.png', desc: '班级管理工具', doc: 'docs/CA.md' },
-        { name: '考试看板', icon: 'images/exam.png', desc: '考试看板工具', doc: 'docs/exam.md' }
-    ],
-    "system-software": [ // 系统软件文件夹
-        { name: 'Office Tool Plus', icon: 'images/OTP.png', desc: 'Office安装工具', doc: 'docs/OTP.md' },
+// 从JSON文件加载数据
+let folderData;
 
-    ],
-    "other-software": [ // 其他软件文件夹
-    ]
-};
+// 加载数据并初始化界面
+fetch('../data/software-data.json')
+    .then(response => {
+        if (!response.ok) throw new Error('数据文件加载失败');
+        return response.json();
+    })
+    .then(data => {
+        folderData = data;
+        initFolderEvents(); // 数据加载完成后初始化文件夹事件
+    })
+    .catch(error => {
+        console.error('数据加载错误:', error);
+        showToast('软件数据加载失败，请刷新页面', 'error');
+    });
 
-// 初始化文件夹点击事件
-document.querySelectorAll('.folder-card').forEach(card => {
-    const folderName = card.dataset.folder;
-    // 移除生成软件图标缩略图的逻辑，改为固定文件夹图标
-    card.innerHTML = `
-        <div class="folder-thumbnail">
-            <i class="fas fa-folder-open folder-icon"></i>  <!-- 使用Font Awesome文件夹图标 -->
-        </div>
-        <p>
-            ${folderName === 'screen-annotate' ? '屏幕批注' :
-            folderName === 'class-management' ? '班级管理' :
-            folderName === 'system-software' ? '系统软件' :
-            '其他软件'}
-        </p>
-    `;
-
-    card.addEventListener('click', () => showFolderModal(folderName));
-});
+// 初始化文件夹点击事件（原逻辑迁移至此）
+function initFolderEvents() {
+    document.querySelectorAll('.folder-card').forEach(card => {
+        const folderName = card.dataset.folder;
+        // 移除生成软件图标缩略图的逻辑，改为固定文件夹图标
+        card.innerHTML = `
+            <div class="folder-thumbnail">
+                <i class="fas fa-folder-open folder-icon"></i>
+            </div>
+            <p>
+                ${folderName === 'screen-annotate' ? '屏幕批注' :
+                folderName === 'class-management' ? '班级管理' :
+                folderName === 'system-software' ? '系统软件' :
+                '其他软件'}
+            </p>
+        `;
+        card.addEventListener('click', () => showFolderModal(folderName));
+    });
+}
 
 // 显示文件夹内容模态框
 function showFolderModal(folderName) {
@@ -125,5 +124,20 @@ document.getElementById('closeModal').addEventListener('click', () => {
 window.addEventListener('click', (e) => {
     if (e.target === document.getElementById('softwareModal')) {
         document.getElementById('softwareModal').style.display = 'none';
+    }
+});
+
+// 新增：ESC键关闭模态框
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {  // 监听ESC键按下事件
+        const folderModal = document.getElementById('folderModal');
+        const softwareModal = document.getElementById('softwareModal');
+        
+        // 调整顺序：优先关闭上层的软件详情模态框
+        if (softwareModal.style.display === 'block') {
+            softwareModal.style.display = 'none';
+        } else if (folderModal.style.display === 'block') {
+            folderModal.style.display = 'none';
+        }
     }
 });
