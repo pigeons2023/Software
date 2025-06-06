@@ -2,7 +2,8 @@
 let folderData;
 
 // 加载数据并初始化界面
-fetch('../data/software-data.json')
+//fetch('../data/software-data.json')
+fetch('https://pigeons2023.github.io/Software/data/software-data.json')
     .then(response => {
         if (!response.ok) throw new Error('数据文件加载失败');
         return response.json();
